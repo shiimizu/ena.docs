@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["archiver",""],["config","Configuration."],["enums",""],["mysql","MySQL implementation."],["pgsql","PostgreSQL implementation."],["request","HTTP client and networking."],["sql","SQL commons."]],"struct":[["Identifier",""]],"trait":[["Board",""],["Endpoint",""]]});

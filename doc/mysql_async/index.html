@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `mysql_async` crate."><meta name="keywords" content="rust, rustlang, rust-lang, mysql_async"><title>mysql_async - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="shortcut icon" href="../favicon.ico"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../mysql_async/index.html'><div class='logo-container'><img src='../rust-logo.png' alt='logo'></div></a><p class='location'>Crate mysql_async</p><div class="sidebar-elems"><a id='all-types' href='all.html'><p>See all mysql_async's items</p></a><div class="block items"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#macros">Macros</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'mysql_async', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/mysql_async/lib.rs.html#9-264' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>mysql_async</a></span></h1><div class='docblock'><h2 id="mysql-async" class="section-header"><a href="#mysql-async">mysql-async</a></h2>
+<p>Tokio based asynchronous MySql client library for rust programming language.</p>
+<h3 id="installation" class="section-header"><a href="#installation">Installation</a></h3>
+<p>Library hosted on <a href="https://crates.io/crates/mysql_async/">crates.io</a>.</p>
+<pre><code class="language-toml">[dependencies]
+mysql_async = &quot;&lt;desired version&gt;&quot;
+</code></pre>
+<h3 id="example" class="section-header"><a href="#example">Example</a></h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">mysql_async</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">struct</span> <span class="ident">Payment</span> {
+    <span class="ident">customer_id</span>: <span class="ident">i32</span>,
+    <span class="ident">amount</span>: <span class="ident">i32</span>,
+    <span class="ident">account_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+}
+
+<span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">main</span>]</span>
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">mysql_async</span>::<span class="ident">error</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">payments</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[
+        <span class="ident">Payment</span> { <span class="ident">customer_id</span>: <span class="number">1</span>, <span class="ident">amount</span>: <span class="number">2</span>, <span class="ident">account_name</span>: <span class="prelude-val">None</span> },
+        <span class="ident">Payment</span> { <span class="ident">customer_id</span>: <span class="number">3</span>, <span class="ident">amount</span>: <span class="number">4</span>, <span class="ident">account_name</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;foo&quot;</span>.<span class="ident">into</span>()) },
+        <span class="ident">Payment</span> { <span class="ident">customer_id</span>: <span class="number">5</span>, <span class="ident">amount</span>: <span class="number">6</span>, <span class="ident">account_name</span>: <span class="prelude-val">None</span> },
+        <span class="ident">Payment</span> { <span class="ident">customer_id</span>: <span class="number">7</span>, <span class="ident">amount</span>: <span class="number">8</span>, <span class="ident">account_name</span>: <span class="prelude-val">None</span> },
+        <span class="ident">Payment</span> { <span class="ident">customer_id</span>: <span class="number">9</span>, <span class="ident">amount</span>: <span class="number">10</span>, <span class="ident">account_name</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;bar&quot;</span>.<span class="ident">into</span>()) },
+    ];
+    <span class="kw">let</span> <span class="ident">payments_clone</span> <span class="op">=</span> <span class="ident">payments</span>.<span class="ident">clone</span>();
+
+    <span class="kw">let</span> <span class="ident">database_url</span> <span class="op">=</span> <span class="comment">/* ... */</span>
+
+    <span class="kw">let</span> <span class="ident">pool</span> <span class="op">=</span> <span class="ident">mysql_async</span>::<span class="ident">Pool</span>::<span class="ident">new</span>(<span class="ident">database_url</span>);
+    <span class="kw">let</span> <span class="ident">conn</span> <span class="op">=</span> <span class="ident">pool</span>.<span class="ident">get_conn</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="comment">// Create temporary table</span>
+    <span class="kw">let</span> <span class="ident">conn</span> <span class="op">=</span> <span class="ident">conn</span>.<span class="ident">drop_query</span>(
+        <span class="string">r&quot;CREATE TEMPORARY TABLE payment (
+            customer_id int not null,
+            amount int not null,
+            account_name text
+        )&quot;</span>
+    ).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="comment">// Save payments</span>
+    <span class="kw">let</span> <span class="ident">params</span> <span class="op">=</span> <span class="ident">payments_clone</span>.<span class="ident">into_iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">payment</span><span class="op">|</span> {
+        <span class="macro">params</span><span class="macro">!</span> {
+            <span class="string">&quot;customer_id&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">payment</span>.<span class="ident">customer_id</span>,
+            <span class="string">&quot;amount&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">payment</span>.<span class="ident">amount</span>,
+            <span class="string">&quot;account_name&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">payment</span>.<span class="ident">account_name</span>.<span class="ident">clone</span>(),
+        }
+    });
+
+    <span class="kw">let</span> <span class="ident">conn</span> <span class="op">=</span> <span class="ident">conn</span>.<span class="ident">batch_exec</span>(<span class="string">r&quot;INSERT INTO payment (customer_id, amount, account_name)
+                    VALUES (:customer_id, :amount, :account_name)&quot;</span>, <span class="ident">params</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="comment">// Load payments from database.</span>
+    <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">conn</span>.<span class="ident">prep_exec</span>(<span class="string">&quot;SELECT customer_id, amount, account_name FROM payment&quot;</span>, ()).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="comment">// Collect payments</span>
+    <span class="kw">let</span> (<span class="kw">_</span> <span class="comment">/* conn */</span>, <span class="ident">loaded_payments</span>) <span class="op">=</span> <span class="ident">result</span>.<span class="ident">map_and_drop</span>(<span class="op">|</span><span class="ident">row</span><span class="op">|</span> {
+        <span class="kw">let</span> (<span class="ident">customer_id</span>, <span class="ident">amount</span>, <span class="ident">account_name</span>) <span class="op">=</span> <span class="ident">mysql_async</span>::<span class="ident">from_row</span>(<span class="ident">row</span>);
+        <span class="ident">Payment</span> {
+            <span class="ident">customer_id</span>: <span class="ident">customer_id</span>,
+            <span class="ident">amount</span>: <span class="ident">amount</span>,
+            <span class="ident">account_name</span>: <span class="ident">account_name</span>,
+        }
+    }).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="comment">// The destructor of a connection will return it to the pool,</span>
+    <span class="comment">// but pool should be disconnected explicitly because it&#39;s</span>
+    <span class="comment">// an asynchronous procedure.</span>
+    <span class="ident">pool</span>.<span class="ident">disconnect</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">loaded_payments</span>, <span class="ident">payments</span>);
+
+    <span class="comment">// the async fn returns Result, so</span>
+    <span class="prelude-val">Ok</span>(())
+}</pre></div>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Re-exports</a></h2>
+<table><tr><td><code>pub use mysql_common::<a class="mod" href="../chrono/index.html" title="mod chrono">chrono</a>;</code></td></tr><tr><td><code>pub use mysql_common::<a class="mod" href="../time/index.html" title="mod time">time</a>;</code></td></tr><tr><td><code>pub use mysql_common::<a class="mod" href="../uuid/index.html" title="mod uuid">uuid</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table><tr class='module-item'><td><a class="mod" href="consts/index.html" title='mysql_async::consts mod'>consts</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="mod" href="error/index.html" title='mysql_async::error mod'>error</a></td><td class='docblock-short'><p>Errors used in this crate</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="futures/index.html" title='mysql_async::futures mod'>futures</a></td><td class='docblock-short'><p>Futures used in this crate</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="params/index.html" title='mysql_async::params mod'>params</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="mod" href="prelude/index.html" title='mysql_async::prelude mod'>prelude</a></td><td class='docblock-short'><p>Traits used in this crate</p>
+</td></tr></table><h2 id='macros' class='section-header'><a href="#macros">Macros</a></h2>
+<table><tr class='module-item'><td><a class="macro" href="macro.params.html" title='mysql_async::params macro'>params</a></td><td class='docblock-short'><p>This macro is a convenient way to pass named parameters to a statement.</p>
+</td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table><tr class='module-item'><td><a class="struct" href="struct.BinaryProtocol.html" title='mysql_async::BinaryProtocol struct'>BinaryProtocol</a></td><td class='docblock-short'><p>Phantom struct used to specify MySql binary protocol.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Column.html" title='mysql_async::Column struct'>Column</a></td><td class='docblock-short'><p>Represents MySql Column (column packet).</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Compression.html" title='mysql_async::Compression struct'>Compression</a></td><td class='docblock-short'><p>When compressing data, the compression level can be specified by a value in
+this enum.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Conn.html" title='mysql_async::Conn struct'>Conn</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.Deserialized.html" title='mysql_async::Deserialized struct'>Deserialized</a></td><td class='docblock-short'><p>Use it to parse <code>T: Deserialize</code> from <code>Value</code>.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.FromRowError.html" title='mysql_async::FromRowError struct'>FromRowError</a></td><td class='docblock-short'><p><code>FromRow</code> conversion error.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.FromValueError.html" title='mysql_async::FromValueError struct'>FromValueError</a></td><td class='docblock-short'><p><code>FromValue</code> conversion error.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Opts.html" title='mysql_async::Opts struct'>Opts</a></td><td class='docblock-short'><p>Mysql connection options.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.OptsBuilder.html" title='mysql_async::OptsBuilder struct'>OptsBuilder</a></td><td class='docblock-short'><p>Provides a way to build <a href="../mysql_async/struct.Opts.html" title="`Opts`"><code>Opts</code></a>.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Pool.html" title='mysql_async::Pool struct'>Pool</a></td><td class='docblock-short'><p>Asynchronous pool of MySql connections.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.PoolConstraints.html" title='mysql_async::PoolConstraints struct'>PoolConstraints</a></td><td class='docblock-short'><p>Connection pool constraints.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.PoolOptions.html" title='mysql_async::PoolOptions struct'>PoolOptions</a></td><td class='docblock-short'><p>Connection pool options.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.QueryResult.html" title='mysql_async::QueryResult struct'>QueryResult</a></td><td class='docblock-short'><p>Result of a query or statement execution.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Row.html" title='mysql_async::Row struct'>Row</a></td><td class='docblock-short'><p>Client side representation of a MySql row.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Serialized.html" title='mysql_async::Serialized struct'>Serialized</a></td><td class='docblock-short'><p>Use it to pass <code>T: Serialize</code> as JSON to a prepared statement.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.SslOpts.html" title='mysql_async::SslOpts struct'>SslOpts</a></td><td class='docblock-short'><p>Ssl Options.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Stmt.html" title='mysql_async::Stmt struct'>Stmt</a></td><td class='docblock-short'><p>Prepared statement</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.TextProtocol.html" title='mysql_async::TextProtocol struct'>TextProtocol</a></td><td class='docblock-short'><p>Phantom struct used to specify MySql text protocol.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Transaction.html" title='mysql_async::Transaction struct'>Transaction</a></td><td class='docblock-short'><p>This struct represents MySql transaction.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.TransactionOptions.html" title='mysql_async::TransactionOptions struct'>TransactionOptions</a></td><td class='docblock-short'><p>Options for transaction</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.WhiteListFsLocalInfileHandler.html" title='mysql_async::WhiteListFsLocalInfileHandler struct'>WhiteListFsLocalInfileHandler</a></td><td class='docblock-short'><p>Handles local infile requests from filesystem using explicit path white list.</p>
+</td></tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table><tr class='module-item'><td><a class="enum" href="enum.IsolationLevel.html" title='mysql_async::IsolationLevel enum'>IsolationLevel</a></td><td class='docblock-short'><p>Transaction isolation level.</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.Params.html" title='mysql_async::Params enum'>Params</a></td><td class='docblock-short'><p>Representations of parameters of a prepared statement.</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.Value.html" title='mysql_async::Value enum'>Value</a></td><td class='docblock-short'><p>Client side representation of a value of MySql column.</p>
+</td></tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table><tr class='module-item'><td><a class="constant" href="constant.DEFAULT_INACTIVE_CONNECTION_TTL.html" title='mysql_async::DEFAULT_INACTIVE_CONNECTION_TTL constant'>DEFAULT_INACTIVE_CONNECTION_TTL</a></td><td class='docblock-short'><p>Default <code>inactive_connection_ttl</code> of a pool.</p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.DEFAULT_TTL_CHECK_INTERVAL.html" title='mysql_async::DEFAULT_TTL_CHECK_INTERVAL constant'>DEFAULT_TTL_CHECK_INTERVAL</a></td><td class='docblock-short'><p>Default <code>ttl_check_interval</code> of a pool.</p>
+</td></tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table><tr class='module-item'><td><a class="fn" href="fn.from_row.html" title='mysql_async::from_row fn'>from_row</a></td><td class='docblock-short'><p>Will <em>panic</em> if could not convert <code>row</code> to <code>T</code>.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.from_row_opt.html" title='mysql_async::from_row_opt fn'>from_row_opt</a></td><td class='docblock-short'><p>Will return <code>Err(row)</code> if could not convert <code>row</code> to <code>T</code></p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.from_value.html" title='mysql_async::from_value fn'>from_value</a></td><td class='docblock-short'><p>Will panic if could not convert <code>v</code> to <code>T</code></p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.from_value_opt.html" title='mysql_async::from_value_opt fn'>from_value_opt</a></td><td class='docblock-short'><p>Will return <code>Err(FromValueError(v))</code> if could not convert <code>v</code> to <code>T</code></p>
+</td></tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table><tr class='module-item'><td><a class="type" href="type.BoxFuture.html" title='mysql_async::BoxFuture type'>BoxFuture</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="type" href="type.InfileHandlerFuture.html" title='mysql_async::InfileHandlerFuture type'>InfileHandlerFuture</a></td><td class='docblock-short'></td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../";window.currentCrate = "mysql_async";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

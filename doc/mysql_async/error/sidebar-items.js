@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["DriverError","This type enumerates driver errors."],["Error","This type enumerates library errors."],["ParseError","Errors that can occur during parsing."],["UrlError","This type enumerates connection URL errors."]],"struct":[["ServerError","This type represents MySql server error."]],"type":[["Result","Result type alias for this library."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Client","Client wrapper for the implementation of the database ([`tokio_postgres`])"],["Post","The schema for each row.  "],["Schema","Core schema and SQL queries to use"]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Client","Implementation of the default HTTP client.   A wrapper for [`reqwest`]"]],"trait":[["HttpClient",""]]});
