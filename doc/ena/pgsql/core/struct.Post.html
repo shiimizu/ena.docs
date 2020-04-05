@@ -65,7 +65,7 @@ of search engines</li>
 <ul>
 <li><a href="struct.Post.html#structfield.md5"><code>md5</code></a> From base64 to binary, to save space</li>
 <li><a href="struct.Post.html#structfield.country"><code>country</code></a> Use <code>troll_country</code> if <a href="#structfield.country"><code>country</code></a> is <code>NULL</code></li>
-<li>To boolean, to save space
+<li>To <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="`bool`"><code>bool</code></a>, to save space
 <ul>
 <li><a href="struct.Post.html#structfield.sticky"><code>sticky</code></a></li>
 <li><a href="struct.Post.html#structfield.closed"><code>closed</code></a></li>
@@ -87,7 +87,7 @@ be <a href="https://doc.rust-lang.org/nightly/std/primitive.u8.html" title="`u8`
 <pre><code class="language-sql">                                          Table &quot;asagi.a&quot;
      Column     |   Type   | Collation | Nullable | Default | Storage  | Stats target | Description
 ----------------+----------+-----------+----------+---------+----------+--------------+-------------
- no             | bigint   |           |          |         | plain    |              |
+ no             | bigint   |           | not null |         | plain    |              |
  subnum         | bigint   |           |          |         | plain    |              |
  tim            | bigint   |           |          |         | plain    |              |
  resto          | bigint   |           | not null | 0       | plain    |              |
