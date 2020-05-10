@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["ena"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/ops/arith/trait.Add.html\" title=\"trait core::ops::arith::Add\">Add</a>&lt;<a class=\"enum\" href=\"ena/sql/enum.YotsubaStatement.html\" title=\"enum ena::sql::YotsubaStatement\">YotsubaStatement</a>&gt; for <a class=\"enum\" href=\"ena/sql/enum.YotsubaStatement.html\" title=\"enum ena::sql::YotsubaStatement\">YotsubaStatement</a>","synthetic":false,"types":["ena::sql::YotsubaStatement"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
